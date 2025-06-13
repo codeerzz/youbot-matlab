@@ -1,6 +1,3 @@
-%% Parametreler%% Parametreler
-Ts = 0.001;     % Yeni örnekleme zamanı (1 ms)
-t = 0:Ts:30;    % 30 saniyelik simülasyon süresi
 
 %% Referans Yörünge
 freq = 2*pi/30;
