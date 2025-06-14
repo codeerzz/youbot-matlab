@@ -4,7 +4,7 @@ Ts = 0.001;       % Örnekleme zamanı (1 ms)
 t = 0:Ts:30;      % 30 saniyelik simülasyon süresi
 N = length(t);
 
-% Her kenar 7.5 saniye sürecek
+% Her kenar 7.5 saniye sürecek.
 T_seg = 7.5;
 v = 5 / T_seg;    % Her kenarda 5 metre ilerleyecek, sabit hız (0.6667 m/s)
 
