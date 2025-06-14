@@ -22,6 +22,7 @@ DH_params = [ 0.033,      pi/2, 0.147, joint_angles(1)+2.94961;
              0,       pi/2, 0,  joint_angles(4)+3.36174;
              0,        0,    0.2174,joint_angles(5)+2.92343];
 
+
 num_joints = 5;
 % Base (0. eklem) pozisyonu
 points = zeros(3, num_joints+1);  % Base + 5 eklem
