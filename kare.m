@@ -6,7 +6,8 @@ N = length(t);
 
 % Her kenar 7.5 saniye sürecek.
 T_seg = 7.5;
-v = 5 / T_seg;    % Her kenarda 5 metre ilerleyecek, sabit hız (0.6667 m/s)
+Uz = 2
+v = Uz / T_seg;    % Her kenarda 5 metre ilerleyecek, sabit hız (0.6667 m/s)
 
 % Ön tanımlamalar
 xRef = zeros(1, N);
@@ -24,20 +25,20 @@ for i = 1:N
         dyRef(i) = 0;
 
     elseif ti <= 2*T_seg  % 2. segment: +y
-        xRef(i) = 5;
+        xRef(i) = Uz;
         yRef(i) = v * (ti - T_seg);
         dxRef(i) = 0;
         dyRef(i) = v;
 
     elseif ti <= 3*T_seg  % 3. segment: -x
-        xRef(i) = 5 - v * (ti - 2*T_seg);
-        yRef(i) = 5;
+        xRef(i) = Uz - v * (ti - 2*T_seg);
+        yRef(i) = Uz;
         dxRef(i) = -v;
         dyRef(i) = 0;
 
     else  % 4. segment: -y
         xRef(i) = 0;
-        yRef(i) = 5 - v * (ti - 3*T_seg);
+        yRef(i) = Uz - v * (ti - 3*T_seg);
         dxRef(i) = 0;
         dyRef(i) = -v;
     end
