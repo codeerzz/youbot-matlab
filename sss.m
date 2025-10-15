@@ -26,12 +26,12 @@ initAngle=0;
 
 %Kp=[0.5 0.5 0.5];
 %Kd=[0.5 0.5 0.5];
-Kpx=10;
-Kpy=10;
-Kpz=1;
-Kdx=1.5;
-Kdy=1.5;
-Kdz=0.001;
+Kpx=1.21;
+Kpy=1.19;
+Kpz=0.99;
+Kdx=0.26;
+Kdy=0.26;
+Kdz=0.25;
 
 % Gövdeye ait kütle matrisi (Mr)
 M_r = [m  0  0;

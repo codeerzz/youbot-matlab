@@ -5,7 +5,7 @@ N = length(t);
 
 % Her kenar 7.5 saniye sürecek
 T_seg = 7.5;
-Uz = 2 
+Uz = 1 
 v = Uz / T_seg;    % Her kenarda 5 metre ilerleyecek, sabit hız (0.6667 m/s)
 
 

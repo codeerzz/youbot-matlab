@@ -3,7 +3,7 @@
 tftree = rostf;
 
 % Haritayı al
-subMap = rossubscriber('/map', 'nav_msgs/OccupancyGrid');
+subMap = rossubscriber('/rtabmap/grid_map', 'nav_msgs/OccupancyGrid');
 msg = receive(subMap);
 msgStruct = struct(msg); % Mesajı struct formatına dönüştür
 map = rosReadOccupancyGrid(msgStruct); % Occupancy grid haritasını oluştur
@@ -16,7 +16,6 @@ tfData = getTransform(tftree, 'map', 'base_link', 'Timeout', 5);
 pos = tfData.Transform.Translation;
 xRobot = pos.X;
 yRobot = pos.Y;
-zRobot = pos.Z;  % 2D plan için çoğunlukla 0 olarak kabul edilir ama yine de çekilebilir
 
 % Dönüşümden yönelim (quaternion) bilgisi çek
 quat = tfData.Transform.Rotation;
@@ -85,10 +84,6 @@ if solInfo.IsPathFound
     pathMsg.Header.FrameId = 'map'; % Harita çerçevesini kullan
     pathMsg.Header.Stamp = rostime('now'); % Zaman damgası
     waypoint = zeros(size(pathObj.States, 1),2);
-    % map → odom dönüşümünü al (sadece translasyon)
-    map2odom_tf = getTransform(tftree, 'odom', 'map', 'Timeout', 3);
-    dx = map2odom_tf.Transform.Translation.X;
-    dy = map2odom_tf.Transform.Translation.Y;
     % Yol noktalarını doldur
     for i = 1:size(pathObj.States, 1)
         pose = rosmessage('geometry_msgs/PoseStamped'); % Her yol noktası için mesaj
@@ -98,8 +93,8 @@ if solInfo.IsPathFound
         pose.Pose.Position.Z = 0; % 2D plan için Z=0
         pose.Pose.Orientation.W = 1.0; % Yön (varsayılan olarak hiçbir döndürme yok
            
-        waypoint(i,1) = pathObj.States(i,1) + dx;
-        waypoint(i,2) =pathObj.States(i,2)+ dy;
+        waypoint(i,1) = pathObj.States(i,1) ;
+        waypoint(i,2) =pathObj.States(i,2);
 
         pathMsg.Poses(i) = pose; % Mesajı listeye ekle
     end
